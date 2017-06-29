@@ -34,12 +34,12 @@ void write_matrix(const float m[][MATRIX_SIZE], int row_size) {
   // formatting 
 
   for(int i=0; i < row_size; i++) {
-    for (int j = 0; j < row_size; j++) {
-      if (m[i][j]>=10000) {
+    for (float v: m[i]) {
+      if (v>=10000) {
         cout << fixed << setw(9) << " OVERFLOW ";        
       }
       else {
-        cout << fixed << setw(9) << setprecision(2) << m[i][j] << " ";
+        cout << fixed << setw(9) << setprecision(2) << v << " ";
       }
     }
     cout << endl;
