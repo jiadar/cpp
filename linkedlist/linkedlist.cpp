@@ -1,24 +1,52 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include "matrix.h"
+#include "linkedlist.h"
 
 using namespace std;
 
-
-SparseMatrix *create(int m_size) {
-  SparseMatrix s;
-  s.rows = new Row();
-  Row *rows = s.rows;
-  rows->r = 0;
-  for (int i = 1; i < MATRIX_SIZE; i++) {
-    rows->next = new Row();
-    rows->next->r = i;
-    cout << "created row " << rows->r << endl;
-  }
-  //cout << "New Matrix Created with Size " << MATRIX_SIZE << endl;
-  return new SparseMatrix();
+Node::Node() {
+  data = 0;
+  next = NULL;
+  initialized = 1;
 }
+
+Node *create() {
+  return new Node();
+}
+
+void write_list(Node *head) {
+  Node *cur = head;
+
+  if (! cur->initialized) {
+    cout << "Uninitialized";
+  }
+  else {
+    while (cur->next != NULL) {
+      cout << cur->data << " ";
+      cur = cur->next;
+    }
+    cout << cur->data << " ";
+  }
+}
+
+void read_list(Node *head, int m_size, ifstream &inputFile) {
+  Node *cur = head;
+  int i=0;
+  float elt;
+  
+  if (! cur->initialized) {
+    cur=new Node();
+  }
+  for (i = 0; i < m_size*m_size; i++) {
+    inputFile >> elt;
+    cur->data = elt;
+    cur->next = new Node();
+    cur=cur->next;
+  }
+}
+
+
 
 void write_column(Column *column, int m_size) {
   // float elt;
@@ -71,8 +99,6 @@ void read_matrix(SparseMatrix *m, int m_size, ifstream &inputFile) {
 }
 
 
-void write_matrix(SparseMatrix *m, int m_size) {
-}
 
 void multiply(SparseMatrix *m1, SparseMatrix *m2, SparseMatrix *m, int m_size) {
   cout << "unimplemented" << endl;

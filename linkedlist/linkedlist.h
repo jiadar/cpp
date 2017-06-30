@@ -6,6 +6,13 @@ using namespace std;
 
 const int MATRIX_SIZE=18;
 
+struct Node {
+  float data;
+  Node *next;
+  bool initialized = 0;
+  Node();
+};
+
 struct Column {
   int c;
   Column *next;
@@ -22,10 +29,6 @@ struct SparseMatrix {
   Row *rows;
 };
 
-SparseMatrix *create(int m_size);
-void read_matrix(SparseMatrix *m, int m_size, ifstream &inputFile);
-void write_matrix(SparseMatrix *m, int m_size);
-void multiply(SparseMatrix *m1, SparseMatrix *m2, SparseMatrix *m, int m_size);
-
-
-
+Node *create();
+void write_list(Node *head);
+void read_list(Node *head, int m_size, ifstream &inputfile);
