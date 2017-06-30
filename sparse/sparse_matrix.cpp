@@ -16,7 +16,7 @@ Node::Node(int row, int col, float elt) {
   c = col;
   data = elt;
   next_row = NULL;
-  next_col = NULL;  
+  next_col = NULL;;  
 }
 
 
@@ -24,12 +24,9 @@ SparseMatrix::SparseMatrix() {
   int i;
   head = new Node();
   Node *cur_row = head;
-  Node *cur_col = head;
   for (i = 0; i < MATRIX_SIZE; i++) {
     cur_row->next_row = new Node();
-    cur_col->next_col = new Node();
-    cur_row = cur_row->next_row; 
-    cur_col = cur_col->next_col;     
+    cur_row->next_col = NULL;
   }
   cout << "New Matrix Created with Size " << MATRIX_SIZE << endl;
 }
@@ -43,12 +40,7 @@ void add_next_entry(SparseMatrix m, int row, int col, float elt) {
   if (elt == 0) 
     return;
 
-  // Make a new node for this entry
-
-  Node *next_entry = new Node(row, col, elt);
-  
-  int i=0, j=0;
-  Node *cur = m.head;
+  cout << "adding at " << row << ", " << col << " value "<< elt << endl;
 
 }
 
@@ -58,11 +50,32 @@ void read_matrix(SparseMatrix *m, int m_size, ifstream &inputFile) {
 
   float elt;
   int i, j;
-  for(i = 0; i < m_size; i++) {
+  Node *cur_row = m->head;
+  Node *cur_col = m->head;
+  Node *temp;
+
+  for (i = 0; i < m_size; i++) {
+    cout << "row " << i << " ";
     for (j = 0; j < m_size; j++) {
       inputFile >> elt;
-      add_next_entry(*m, i, j, elt);
+      cout << ".";
+      // base case, first col == NULL, insert here
+      if (elt != 0) {
+        if (cur_col == NULL) {
+          cout << "N";
+          temp = new Node(i, j, elt);
+          cur_col = temp;          
+        }
+        else {
+          cout << "B";
+          cur_col->next_col = new Node(i, j, elt);
+          cur_col = cur_col->next_col;
+        }
+      }
     }
+    cout << endl;
+    cur_row=cur_row == NULL ?  cur_row : cur_row->next_row;
+    cur_col=cur_row;
   }
 }
 
@@ -73,6 +86,9 @@ void write_matrix(SparseMatrix *m, int m_size) {
   float elt;
   for (i = 0; i < m_size; i++) {
     for (j = 0; j < m_size; j++) {
+      if (cur_col == NULL) {
+        
+      }
       if (cur_col->r == i && cur_col ->c == j) {
         elt = cur_col->data;         
         cur_col = cur_col->next_col == NULL ? NULL : cur_col->next_col;

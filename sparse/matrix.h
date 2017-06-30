@@ -6,18 +6,19 @@ using namespace std;
 
 const int MATRIX_SIZE=18;
 
-struct Node {
-  float data;
-  int r;
-  int c;
-  Node *next_col;
-  Node *next_row;
-  Node();
-  Node(int row, int col, float elt);
+struct Column {
+  int col;
+  Column *next;
+};
+
+struct Row {
+  int row;
+  Column *columns;
+  Row *next;
 };
 
 struct SparseMatrix {
-  Node *head;
+  Row *rows;
   SparseMatrix();
 };
 

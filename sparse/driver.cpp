@@ -17,12 +17,12 @@ int main() {
 
   // print out m1 in the matrix format and it should be 0
   cout << "m1 after initialization" << endl;
-  write_matrix(m1,MATRIX_SIZE);
+  //write_matrix(m1,MATRIX_SIZE);
   cout << endl;
 
   // print out m2 in the matrix format and it should be 0
   cout << "m2 after initialization" << endl;
-  write_matrix(m2,MATRIX_SIZE);
+  //write_matrix(m2,MATRIX_SIZE);
   cout << endl;
 
   // open the data file to input the matrices
