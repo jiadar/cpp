@@ -5,21 +5,25 @@ using namespace std;
 // this is unused, but needed for the driver
 
 const int MATRIX_SIZE=18;
+const int TRUE=1;
+const int FALSE=0;
 
-struct Column {
-  int c;
-  Column *next;
+struct Entry {
+  int row;
+  int column;
   float data;
-};
-
-struct Row {
-  int r;
-  Column *columns;
-  Row *next;
+  Entry *next_row;
+  Entry *next_column;
+  bool initialized = FALSE;
+  Entry();
+  Entry(int row, int column, float data);
 };
 
 struct SparseMatrix {
-  Row *rows;
+  Entry *rows;
+  Entry *columns;
+  bool initialized = FALSE;
+  SparseMatrix();
 };
 
 SparseMatrix *create(int m_size);
