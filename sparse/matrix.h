@@ -4,6 +4,9 @@ using namespace std;
 
 // this is unused, but needed for the driver
 
+#ifndef MATRIX_H
+#define MATRIX_H
+
 const int MATRIX_SIZE=18;
 const int TRUE=1;
 const int FALSE=0;
@@ -17,6 +20,8 @@ struct Entry {
   bool initialized = FALSE;
   Entry();
   Entry(int row, int column, float data);
+  string detail();
+  string format();
 };
 
 struct SparseMatrix {
@@ -33,3 +38,4 @@ void multiply(SparseMatrix *m1, SparseMatrix *m2, SparseMatrix *m, int m_size);
 
 
 
+#endif
