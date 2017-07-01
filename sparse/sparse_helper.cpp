@@ -29,7 +29,6 @@ SparseMatrix::SparseMatrix() {
 
 }
 
-
 void set_entry(Entry *e, int row, int column, float data) {
   e->row = row;
   e->column = column;
@@ -48,8 +47,7 @@ void read_row(int r, Entry *row, int m_size, ifstream &inputFile) {
     if (elt != 0.0) {
       set_entry(cur, r, i, elt);
       cur->next_column = new Entry();
-      cur = cur->next_column;
-      
+      cur = cur->next_column;      
     }
   }
 }
@@ -64,10 +62,14 @@ string Entry::detail() {
   return o.str();
 }
 
-string Entry::format() {
+string format_float(float f) {
   ostringstream o;
-  o << setprecision(2) << fixed << setw(7) << data;
-  return o.str();
+  o << setprecision(2) << fixed << setw(9) << f;
+  return o.str();  
+}
+
+string Entry::format() {
+  return format_float(data);
 }
 
 void write_row(int r, Entry *row, int m_size, bool detail) {
@@ -79,7 +81,7 @@ void write_row(int r, Entry *row, int m_size, bool detail) {
       cout << (detail ? cur->detail() : cur->format());
       cur=cur->next_column;
     }
-    else cout << (detail ? "" : cur->format());
+    else cout << (detail ? "" : format_float(0));
     i++;
   }
   cout << endl;
@@ -89,7 +91,47 @@ void write_row(int r, Entry *row, int m_size) {
   write_row(r, row, m_size, FALSE);
 }
 
-void link_entry(Entry *e1, Entry *e2) {
-  // Link e1's column entry to e2 (go down column e1 -> e2)
-  
+Entry *get_entry(SparseMatrix *m, int row, int column) {
+  Entry *cur = m->rows;
+  while (cur != NULL) {
+    if (cur->row == row) {
+      while (cur != NULL && cur->initialized) {
+        if (cur->column == column) 
+          return cur;
+        cur=cur->next_column;
+      }
+    }
+    cur=cur->next_row;
+  }
+  return NULL;
 }
+
+float get_entry_data(SparseMatrix *m, int row, int column) {
+  Entry *e = get_entry(m, row, column);
+  return e == NULL ? 0.0 : e->data;
+}
+
+
+float cell_product(SparseMatrix *m1, SparseMatrix *m2, int i, int j, int m_size) {
+
+  // The chosen matrix multiplication method relies on this function to return the
+  // matrix product for a given row (i) and column (j).
+
+  // To compute a cell product for row, col use the following formula
+  // sum from k=0 to m-1 of A(i,k) * B(k,j)
+
+  float sum = 0.0;
+  
+  for (int k=0; k < m_size; k++) {
+    float a, b;
+    a = get_entry_data(m1, i, k);
+    b = get_entry_data(m2, i, k);
+    sum += a * b;
+    cout << i << "," << k << " : sum += " << a << " * " << b << " = " << sum << endl;
+  }
+  cout << "sum for " << i << "," << j << ": " << sum << endl;
+  return sum;
+}
+
+
+

@@ -37,5 +37,4 @@ void write_matrix(SparseMatrix *m, int m_size);
 void multiply(SparseMatrix *m1, SparseMatrix *m2, SparseMatrix *m, int m_size);
 
 
-
 #endif

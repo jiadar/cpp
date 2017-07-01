@@ -31,13 +31,13 @@ int main() {
   // populate the 2D array with matrix data, m1, from the file
   read_matrix(m1,MATRIX_SIZE,datafile);
   cout << "m1 after populated from data file" << endl;
-  write_matrix(m1,MATRIX_SIZE);
+  //write_matrix(m1,MATRIX_SIZE);
   cout << endl;
 
   // populate the 2D array with matrix data, m2, from the file
   read_matrix(m2,MATRIX_SIZE,datafile);
   cout << "m2 after populated from data file" << endl;
-  //write_matrix(m2,MATRIX_SIZE);
+  write_matrix(m2,MATRIX_SIZE);
   cout << endl;
 
   // close the data file
