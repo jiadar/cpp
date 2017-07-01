@@ -3,12 +3,9 @@
 using namespace std;
 
 int main() {
-
-  // this was changed.. change it back
-  
-  SparseMatrix *m1 = NULL;  // 2D array to store matrix m1
-  SparseMatrix *m2 = NULL;  // 2D array to store matrix m2
-  SparseMatrix *m = NULL;
+  sparse_matrix *m1 = NULL;  // 2D array to store matrix m1
+  sparse_matrix *m2 = NULL;  // 2D array to store matrix m2
+  sparse_matrix *m = NULL;
   ifstream datafile;   // input file stream object
 
   // initialize the matrices m1,m2 to 0.0
@@ -17,12 +14,12 @@ int main() {
 
   // print out m1 in the matrix format and it should be 0
   cout << "m1 after initialization" << endl;
-  //write_matrix(m1,MATRIX_SIZE);
+  write_matrix(m1,MATRIX_SIZE);
   cout << endl;
 
   // print out m2 in the matrix format and it should be 0
   cout << "m2 after initialization" << endl;
-  //write_matrix(m2,MATRIX_SIZE);
+  write_matrix(m2,MATRIX_SIZE);
   cout << endl;
 
   // open the data file to input the matrices
@@ -31,7 +28,7 @@ int main() {
   // populate the 2D array with matrix data, m1, from the file
   read_matrix(m1,MATRIX_SIZE,datafile);
   cout << "m1 after populated from data file" << endl;
-  //write_matrix(m1,MATRIX_SIZE);
+  write_matrix(m1,MATRIX_SIZE);
   cout << endl;
 
   // populate the 2D array with matrix data, m2, from the file
@@ -42,9 +39,11 @@ int main() {
 
   // close the data file
   datafile.close();
+
   // create the resultant matrix
   m = create(MATRIX_SIZE);
 
+        
   // m = m1 * m2
   multiply(m1, m2, m, MATRIX_SIZE);
 

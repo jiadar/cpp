@@ -24,17 +24,16 @@ struct Entry {
   string format();
 };
 
-struct SparseMatrix {
+struct sparse_matrix {
   Entry *rows;
   Entry *columns;
   bool initialized = FALSE;
-  SparseMatrix();
+  sparse_matrix();
 };
 
-SparseMatrix *create(int m_size);
-void read_matrix(SparseMatrix *m, int m_size, ifstream &inputFile);
-void write_matrix(SparseMatrix *m, int m_size);
-void multiply(SparseMatrix *m1, SparseMatrix *m2, SparseMatrix *m, int m_size);
-
+sparse_matrix *create(int m_size);
+void read_matrix(sparse_matrix *m, int m_size, ifstream &inputFile);
+void write_matrix(sparse_matrix *m, int m_size);
+void multiply(sparse_matrix *m1, sparse_matrix *m2, sparse_matrix *m, int m_size);
 
 #endif
