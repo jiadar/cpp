@@ -1,3 +1,6 @@
+#ifndef MATRIX_H
+#define MATRIX_H
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -27,3 +30,4 @@ void read_matrix(sparse_matrix *m, int m_size, ifstream &inputFile);
 void write_matrix(sparse_matrix *m, int m_size);
 void multiply(sparse_matrix *m1, sparse_matrix *m2, sparse_matrix *m, int m_size);
 
+#endif
