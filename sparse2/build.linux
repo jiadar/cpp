@@ -1,0 +1,12 @@
+#!/bin/bash
+make
+./driver > output.txt
+./driver
+tar cvzf sparse_matrix.tgz Makefile data driver.cpp output.txt sparse_helper.cpp matrix.h sparse_helper.h build.linux sparse_matrix.cpp
+
+
+
+
+
+
+
