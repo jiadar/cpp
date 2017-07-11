@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int MATRIX_SIZE=3;
+const int MATRIX_SIZE=18;
 
 void create(float m[][MATRIX_SIZE], int row_size);
 void read_matrix(float m[][MATRIX_SIZE],int row_size, ifstream& inputFile);

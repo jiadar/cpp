@@ -1,8 +1,12 @@
+// Function definitions for the utility functions in sparse_helper.cpp
+// These functions are documented in sparse_helper.cpp
+
 #include "matrix.h"
 
 #ifndef SPARSE_HELPER_H
 #define SPARSE_HELPER_H
 
+node *create_node(int i, int j, float elt);
 string format_float(float f);
 void node_detail(node *n);
 void link_row(node *head, node *entry);

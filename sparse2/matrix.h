@@ -1,3 +1,5 @@
+// Sparse Matrix struct and method definitions 
+
 #ifndef MATRIX_H
 #define MATRIX_H
 

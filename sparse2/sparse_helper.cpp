@@ -5,6 +5,18 @@
 
 using namespace std;
 
+// Create a new node with row i, column j, and element elt
+
+node *create_node(int i, int j, float elt) {
+  node *entry = new node();
+  entry -> row = i;
+  entry -> column = j;
+  entry -> element = elt;
+  entry -> next_in_row = NULL;
+  entry -> next_in_column = NULL;
+  return entry; 
+}
+
 // Utility function to format a float, to avoid duplicated code
 
 string format_float(float f) {
@@ -28,25 +40,6 @@ void node_detail(node *n) {
 
 // Link a node entry to the end of the row list at head
 
-void link_row(node *head, node *entry) {
-  node *cur = head;
-  while (cur->next_in_column != NULL ) {
-    cur = cur -> next_in_column;
-  }
-  cur -> next_in_column = entry;
-}
-
-// Link a node entry to the end of the column list at head
-
-void link_column(node *head, node *entry) {
-
-  node *cur = head;
-  while (cur->next_in_row != NULL ) {
-    cur = cur -> next_in_row;
-  }
-  cur -> next_in_row = entry;  
-}
-
 void add_entry_to_row(node *&head, node *entry) {
   if (head == NULL) { 
     head  = entry;
@@ -58,6 +51,8 @@ void add_entry_to_row(node *&head, node *entry) {
     cur -> next_in_row = entry;
   } 
 }
+
+// Link a node entry to the end of the column list at head
 
 void add_entry_to_column(node *&head, node *entry) {
   if (head == NULL) { 
@@ -71,6 +66,7 @@ void add_entry_to_column(node *&head, node *entry) {
   } 
 }
 
+// Write a row at head to the console
 
 void write_row(node *head, int m_size) {
 
@@ -91,6 +87,7 @@ void write_row(node *head, int m_size) {
   cout << endl;
 }
 
+// Get the data for the node at row, col in matrix m
 
 float get_node_data(sparse_matrix *m, int row, int col) {
   node *cur = m -> first_in_row[row];
@@ -102,6 +99,7 @@ float get_node_data(sparse_matrix *m, int row, int col) {
   return 0;
 }
 
+// Compute the cell product
 
 float cell_product(sparse_matrix *m1, sparse_matrix *m2, int i, int j, int m_size) {
 

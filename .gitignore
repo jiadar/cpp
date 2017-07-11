@@ -4,6 +4,7 @@ log/
 .floo
 .flooignore
 driver
+*.tgz
 
 # Compiled source #
 ###################

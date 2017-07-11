@@ -1,3 +1,5 @@
+# This Makefile builds the sparse matrix product and links it to the driver
+
 all: driver
 
 sparse_helper.o: sparse_helper.cpp matrix.h sparse_helper.h

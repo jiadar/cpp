@@ -1,0 +1,9 @@
+sparse/ : contains the first version of the project that uses structs different than those requested in the specification. 
+          this uses just a pointer to store all the rows and columns, rather than an array. It is for entertainment purposes
+          only and should not be graded, though comments / suggestions are appreciated. 
+
+sparse2/ : contains the project using structs identical to those requested in the specification. This is the directory that
+           should be graded. 
+
+
+
